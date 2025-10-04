@@ -21,7 +21,7 @@ TagihanSerampangan is a terminal-based money management dashboard for Indonesian
 
 ```bash
 # Clone the repository
-git clone https://github.com/<your-account>/tagihanserampangan.git
+git clone https://github.com/jankerzone/tagihanserampangan.git
 cd tagihanserampangan
 
 # (Optional) create a virtual environment
