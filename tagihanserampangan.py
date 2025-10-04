@@ -37,6 +37,8 @@ LANGUAGE_STRINGS: Dict[str, Dict[str, str]] = {
         "column_realization": "Realisasi 💵",
         "column_progress": "Progres Penggunaan Anggaran",
         "column_percent_usage": "% Penggunaan",
+        "column_amount": "Jumlah",
+        "column_category": "Kategori",
         "no_expenses": "Belum ada pengeluaran.",
         "error_positive_int": "Masukkan angka bulat tidak negatif.",
         "prompt_income_name": "Nama sumber pendapatan: ",
@@ -63,6 +65,12 @@ LANGUAGE_STRINGS: Dict[str, Dict[str, str]] = {
         "copy_prev_missing": "Tidak ada data untuk {month_label}.",
         "copy_prev_confirm": "Salin data {month_label} ke periode saat ini? (y/n): ",
         "copy_prev_success": "Data dari {month_label} berhasil disalin.",
+        "copy_prev_adjust_prompt": "Sesuaikan alokasi anggaran hasil salin? (y/n): ",
+        "adjust_budget_header": "Sesuaikan alokasi anggaran",
+        "adjust_skip_hint": "Tekan Enter untuk mempertahankan nilai lama.",
+        "adjust_budget_prompt": "Alokasi baru untuk {name} (saat ini {allocation}): ",
+        "adjust_invalid_amount": "Masukkan angka bulat tidak negatif atau kosong untuk melewati.",
+        "adjust_complete": "{count} item diperbarui.",
         "delete_category_prompt": "Pilih kategori untuk dihapus:",
         "delete_income_option": "Sumber pendapatan",
         "delete_saving_option": "Tabungan",
@@ -72,6 +80,27 @@ LANGUAGE_STRINGS: Dict[str, Dict[str, str]] = {
         "delete_prompt_index": "Pilih nomor yang akan dihapus: ",
         "invalid_number": "Nomor tidak valid.",
         "delete_success": "{name} berhasil dihapus.",
+        "paste_menu_title": "Tempel dari Spreadsheet",
+        "paste_menu_option_income": "Tempel sumber pendapatan",
+        "paste_menu_option_saving": "Tempel tabungan",
+        "paste_menu_option_budget": "Tempel item anggaran",
+        "paste_instructions": "Tempel data yang disalin dari spreadsheet. Tekan Enter pada baris kosong untuk selesai.",
+        "paste_finish_hint": "Gunakan tab antar kolom agar sistem mudah membaca data.",
+        "paste_no_rows": "Tidak ada data yang ditempel.",
+        "paste_errors_header": "Baris berikut dilewati:",
+        "paste_error": "Baris {line}: {reason}",
+        "paste_reason_missing_name": "kolom nama kosong",
+        "paste_reason_missing_amount": "kolom jumlah tidak ditemukan",
+        "paste_reason_invalid_amount": "jumlah tidak dapat dibaca",
+        "paste_reason_invalid_realization": "realisasi tidak dapat dibaca",
+        "paste_preview_title": "Pratinjau data yang akan ditambahkan",
+        "paste_confirm": "Tambahkan {count} {target}? (y/n): ",
+        "paste_success": "{count} {target} berhasil ditambahkan.",
+        "paste_no_valid_rows": "Tidak ada baris valid untuk ditambahkan.",
+        "paste_target_income": "sumber pendapatan",
+        "paste_target_saving": "tabungan",
+        "paste_target_budget": "item anggaran",
+        "paste_cancelled": "Penambahan dibatalkan.",
         "budgeting_menu_title": "Menu Anggaran",
         "budgeting_menu_add_income": "Tambah sumber pendapatan",
         "budgeting_menu_add_saving": "Tambah tabungan",
@@ -79,6 +108,7 @@ LANGUAGE_STRINGS: Dict[str, Dict[str, str]] = {
         "budgeting_menu_edit_budget": "Edit realisasi anggaran",
         "budgeting_menu_delete_item": "Hapus item",
         "budgeting_menu_copy_prev": "Salin data bulan sebelumnya",
+        "budgeting_menu_paste": "Tempel dari spreadsheet",
         "budgeting_menu_back": "Kembali ke menu utama",
         "prompt_choice": "Masukkan pilihan: ",
         "main_menu_title": "Menu Utama",
@@ -133,6 +163,8 @@ LANGUAGE_STRINGS: Dict[str, Dict[str, str]] = {
         "column_realization": "Realization 💵",
         "column_progress": "Budget Usage Progress",
         "column_percent_usage": "% Usage",
+        "column_amount": "Amount",
+        "column_category": "Category",
         "no_expenses": "No expenses yet.",
         "error_positive_int": "Enter a non-negative whole number.",
         "prompt_income_name": "Income source name: ",
@@ -159,6 +191,12 @@ LANGUAGE_STRINGS: Dict[str, Dict[str, str]] = {
         "copy_prev_missing": "No data available for {month_label}.",
         "copy_prev_confirm": "Copy {month_label} data into the current period? (y/n): ",
         "copy_prev_success": "Copied data from {month_label} successfully.",
+        "copy_prev_adjust_prompt": "Adjust copied budget allocations? (y/n): ",
+        "adjust_budget_header": "Adjust budget allocations",
+        "adjust_skip_hint": "Press Enter to keep the current value.",
+        "adjust_budget_prompt": "New allocation for {name} (currently {allocation}): ",
+        "adjust_invalid_amount": "Enter a non-negative whole number or leave blank to skip.",
+        "adjust_complete": "Updated {count} items.",
         "delete_category_prompt": "Choose a category to delete:",
         "delete_income_option": "Income sources",
         "delete_saving_option": "Savings",
@@ -168,6 +206,27 @@ LANGUAGE_STRINGS: Dict[str, Dict[str, str]] = {
         "delete_prompt_index": "Select the number to delete: ",
         "invalid_number": "Number is not valid.",
         "delete_success": "{name} deleted successfully.",
+        "paste_menu_title": "Paste from Spreadsheet",
+        "paste_menu_option_income": "Paste income sources",
+        "paste_menu_option_saving": "Paste savings",
+        "paste_menu_option_budget": "Paste budget items",
+        "paste_instructions": "Paste data copied from your spreadsheet. Submit an empty line to finish.",
+        "paste_finish_hint": "Use tab-separated columns so the parser can read them easily.",
+        "paste_no_rows": "No data was pasted.",
+        "paste_errors_header": "Skipped rows:",
+        "paste_error": "Row {line}: {reason}",
+        "paste_reason_missing_name": "missing name column",
+        "paste_reason_missing_amount": "amount column not found",
+        "paste_reason_invalid_amount": "amount could not be parsed",
+        "paste_reason_invalid_realization": "realization could not be parsed",
+        "paste_preview_title": "Preview of data to be added",
+        "paste_confirm": "Add {count} {target}? (y/n): ",
+        "paste_success": "Added {count} {target} successfully.",
+        "paste_no_valid_rows": "No valid rows to add.",
+        "paste_target_income": "income sources",
+        "paste_target_saving": "savings",
+        "paste_target_budget": "budget items",
+        "paste_cancelled": "Paste cancelled.",
         "budgeting_menu_title": "Budgeting Menu",
         "budgeting_menu_add_income": "Add income source",
         "budgeting_menu_add_saving": "Add saving",
@@ -175,6 +234,7 @@ LANGUAGE_STRINGS: Dict[str, Dict[str, str]] = {
         "budgeting_menu_edit_budget": "Edit budget realization",
         "budgeting_menu_delete_item": "Delete item",
         "budgeting_menu_copy_prev": "Copy previous month's data",
+        "budgeting_menu_paste": "Paste from spreadsheet",
         "budgeting_menu_back": "Back to main menu",
         "prompt_choice": "Enter your choice: ",
         "main_menu_title": "Main Menu",
@@ -655,6 +715,39 @@ def prompt_positive_int(message: str, error_message: str) -> int:
             console.print(f"[red]{error_message}[/]")
 
 
+def parse_amount_value(raw: str) -> int | None:
+    cleaned = raw.strip()
+    if not cleaned:
+        return None
+    lowered = cleaned.lower()
+    if "-" in lowered or lowered.startswith("("):
+        return None
+    digits = "".join(ch for ch in lowered if ch.isdigit())
+    if not digits:
+        return None
+    try:
+        return int(digits)
+    except ValueError:
+        return None
+
+
+def merge_amount_tokens(first: str, rest: List[str]) -> Tuple[str, List[str]]:
+    value = first
+    remaining = list(rest)
+    if parse_amount_value(value) is None:
+        return value, remaining
+    while remaining:
+        fragment = remaining[0].strip()
+        if not fragment or not fragment.isdigit() or len(fragment) > 3:
+            break
+        candidate = value + fragment
+        if parse_amount_value(candidate) is None:
+            break
+        value = candidate
+        remaining.pop(0)
+    return value, remaining
+
+
 def hash_password(password: str) -> str:
     return hashlib.sha256(password.encode("utf-8")).hexdigest()
 
@@ -769,6 +862,205 @@ def add_budget_item(session: Session) -> None:
     )
     persist_session(session)
     console.print(f"[green]{tr(profile, 'budget_added')}[/]")
+
+
+def capture_pasted_lines(profile: Dict[str, Any]) -> List[str]:
+    console.print()
+    console.print(tr(profile, "paste_instructions"))
+    console.print(tr(profile, "paste_finish_hint"))
+    lines: List[str] = []
+    while True:
+        try:
+            line = input("> ")
+        except EOFError:
+            break
+        if not line.strip():
+            break
+        lines.append(line)
+    return lines
+
+
+def parse_pasted_rows(
+    profile: Dict[str, Any], lines: List[str], data_type: str
+) -> Tuple[List[Dict[str, Any]], List[str]]:
+    items: List[Dict[str, Any]] = []
+    errors: List[str] = []
+
+    for idx, raw_line in enumerate(lines, 1):
+        if "\t" in raw_line:
+            columns = [part.strip() for part in raw_line.split("\t")]
+        elif ";" in raw_line:
+            columns = [part.strip() for part in raw_line.split(";")]
+        else:
+            columns = [part.strip() for part in raw_line.split(",")]
+
+        if data_type in {"income", "saving"}:
+            if len(columns) < 2:
+                errors.append(
+                    tr(profile, "paste_error", line=idx, reason=tr(profile, "paste_reason_missing_amount"))
+                )
+                continue
+            name = columns[0].strip() or tr(profile, "default_name")
+            amount_text = columns[1]
+            if len(columns) > 2:
+                amount_text += "".join(columns[2:])
+            if not amount_text.strip():
+                errors.append(
+                    tr(profile, "paste_error", line=idx, reason=tr(profile, "paste_reason_missing_amount"))
+                )
+                continue
+            amount = parse_amount_value(amount_text)
+            if amount is None:
+                errors.append(
+                    tr(profile, "paste_error", line=idx, reason=tr(profile, "paste_reason_invalid_amount"))
+                )
+                continue
+            items.append({"name": name, "amount": amount})
+        else:
+            if not columns or len(columns) < 2:
+                errors.append(
+                    tr(profile, "paste_error", line=idx, reason=tr(profile, "paste_reason_missing_amount"))
+                )
+                continue
+            name = columns[0].strip()
+            if not name:
+                name = tr(profile, "default_name")
+
+            allocation_text, remainder = merge_amount_tokens(columns[1], columns[2:])
+            allocation = parse_amount_value(allocation_text)
+            if allocation is None:
+                errors.append(
+                    tr(profile, "paste_error", line=idx, reason=tr(profile, "paste_reason_invalid_amount"))
+                )
+                continue
+
+            category = ""
+            realization_text = ""
+
+            if remainder:
+                first_remainder = remainder[0]
+                if parse_amount_value(first_remainder) is not None:
+                    realization_text, leftover = merge_amount_tokens(first_remainder, remainder[1:])
+                    if leftover:
+                        realization_text = " ".join([realization_text] + leftover).strip()
+                else:
+                    category = first_remainder.strip()
+                    leftover_columns = remainder[1:]
+                    if leftover_columns:
+                        realization_candidate = leftover_columns[0]
+                        realization_text, leftover = merge_amount_tokens(
+                            realization_candidate, leftover_columns[1:]
+                        )
+                        if leftover:
+                            realization_text = " ".join([realization_text] + leftover).strip()
+
+            category = category.strip()
+            realization_text = realization_text.strip()
+            if realization_text and parse_amount_value(realization_text) is None:
+                if category:
+                    category = f"{category} {realization_text}".strip()
+                    realization_text = ""
+                else:
+                    category = realization_text
+                    realization_text = ""
+
+            if realization_text and parse_amount_value(realization_text) is None:
+                errors.append(
+                    tr(profile, "paste_error", line=idx, reason=tr(profile, "paste_reason_invalid_realization"))
+                )
+                continue
+
+            realization = parse_amount_value(realization_text) if realization_text else 0
+            items.append(
+                {
+                    "name": name,
+                    "allocation": allocation,
+                    "realization": realization or 0,
+                    "category": category,
+                }
+            )
+
+    return items, errors
+
+
+def display_paste_preview(profile: Dict[str, Any], data_type: str, items: List[Dict[str, Any]]) -> None:
+    table = Table(title=tr(profile, "paste_preview_title"), header_style="bold white", expand=True)
+    table.add_column(tr(profile, "column_name"), style="white")
+
+    if data_type == "budget":
+        table.add_column(tr(profile, "column_category"), style="white")
+        table.add_column(tr(profile, "column_allocation"), style="green", justify="right")
+        table.add_column(tr(profile, "column_realization"), style="cyan", justify="right")
+        for item in items:
+            table.add_row(
+                item.get("name", tr(profile, "default_item_name")),
+                item.get("category", ""),
+                format_currency(int(item.get("allocation", 0))),
+                format_currency(int(item.get("realization", 0))),
+            )
+    else:
+        table.add_column(tr(profile, "column_amount"), style="green", justify="right")
+        for item in items:
+            table.add_row(
+                item.get("name", tr(profile, "default_name")),
+                format_currency(int(item.get("amount", 0))),
+            )
+
+    console.print(table)
+
+
+def paste_from_spreadsheet(session: Session) -> None:
+    profile = session.profile
+    month_data = sync_current_month_references(profile)
+
+    console.print(f"\n[bold cyan]{tr(profile, 'paste_menu_title')}[/]")
+    console.print(f"1. {tr(profile, 'paste_menu_option_income')}")
+    console.print(f"2. {tr(profile, 'paste_menu_option_saving')}")
+    console.print(f"3. {tr(profile, 'paste_menu_option_budget')}")
+
+    choice = input(tr(profile, "prompt_choice")).strip()
+    option_map = {
+        "1": ("income", tr(profile, "paste_target_income")),
+        "2": ("saving", tr(profile, "paste_target_saving")),
+        "3": ("budget", tr(profile, "paste_target_budget")),
+    }
+
+    if choice not in option_map:
+        console.print(f"[red]{tr(profile, 'invalid_choice')}[/]")
+        return
+
+    data_type, target_label = option_map[choice]
+    lines = capture_pasted_lines(profile)
+    if not lines:
+        console.print(f"[yellow]{tr(profile, 'paste_no_rows')}[/]")
+        return
+
+    items, errors = parse_pasted_rows(profile, lines, data_type)
+
+    if errors:
+        console.print(f"[yellow]{tr(profile, 'paste_errors_header')}[/]")
+        for message in errors:
+            console.print(f"[yellow]- {message}[/]")
+
+    if not items:
+        console.print(f"[yellow]{tr(profile, 'paste_no_valid_rows')}[/]")
+        return
+
+    display_paste_preview(profile, data_type, items)
+    confirm = input(tr(profile, "paste_confirm", count=len(items), target=target_label)).strip().lower()
+    if confirm not in {"y", "yes", "ya"}:
+        console.print(f"[yellow]{tr(profile, 'paste_cancelled')}[/]")
+        return
+
+    if data_type == "income":
+        month_data["income_sources"].extend(items)
+    elif data_type == "saving":
+        month_data["saving_list"].extend(items)
+    else:
+        month_data["budgeting_list"].extend(items)
+
+    persist_session(session)
+    console.print(f"[green]{tr(profile, 'paste_success', count=len(items), target=target_label)}[/]")
 
 
 def list_budget_items(profile: Dict[str, Any]) -> None:
@@ -892,7 +1184,8 @@ def budgeting_menu(session: Session) -> None:
         console.print(f"4. {tr(profile, 'budgeting_menu_edit_budget')}")
         console.print(f"5. {tr(profile, 'budgeting_menu_delete_item')}")
         console.print(f"6. {tr(profile, 'budgeting_menu_copy_prev')}")
-        console.print(f"7. {tr(profile, 'budgeting_menu_back')}")
+        console.print(f"7. {tr(profile, 'budgeting_menu_paste')}")
+        console.print(f"8. {tr(profile, 'budgeting_menu_back')}")
         choice = input(tr(profile, "prompt_choice")).strip()
 
         if choice == "1":
@@ -908,9 +1201,36 @@ def budgeting_menu(session: Session) -> None:
         elif choice == "6":
             copy_previous_month(session)
         elif choice == "7":
+            paste_from_spreadsheet(session)
+        elif choice == "8":
             break
         else:
             console.print(f"[red]{tr(profile, 'invalid_choice')}[/]")
+
+
+def adjust_copied_budget_allocations(session: Session, month_data: Dict[str, Any]) -> None:
+    profile = session.profile
+    console.print(f"\n[bold cyan]{tr(profile, 'adjust_budget_header')}[/]")
+    console.print(tr(profile, "adjust_skip_hint"))
+
+    updated = 0
+    for item in month_data.get("budgeting_list", []):
+        name = item.get("name", tr(profile, "default_item_name"))
+        current_allocation = format_currency(int(item.get("allocation", 0)))
+        while True:
+            raw = input(tr(profile, "adjust_budget_prompt", name=name, allocation=current_allocation)).strip()
+            if not raw:
+                break
+            amount = parse_amount_value(raw)
+            if amount is None:
+                console.print(f"[red]{tr(profile, 'adjust_invalid_amount')}[/]")
+                continue
+            item["allocation"] = amount
+            updated += 1
+            break
+
+    if updated:
+        console.print(f"[green]{tr(profile, 'adjust_complete', count=updated)}[/]")
 
 
 def copy_previous_month(session: Session) -> None:
@@ -941,6 +1261,11 @@ def copy_previous_month(session: Session) -> None:
     current_data["budgeting_list"] = deepcopy(prev_data["budgeting_list"])
 
     sync_current_month_references(profile)
+    if current_data["budgeting_list"]:
+        adjust_choice = input(tr(profile, "copy_prev_adjust_prompt")).strip().lower()
+        if adjust_choice in {"y", "ya", "yes"}:
+            adjust_copied_budget_allocations(session, current_data)
+
     persist_session(session)
     console.print(f"[green]{tr(profile, 'copy_prev_success', month_label=prev_label)}[/]")
 
